@@ -33,22 +33,50 @@
       line-height: 1.6;
     }
 
-    .heart {
+    .floating {
       position: fixed;
       top: -50px;
       font-size: 24px;
-      color: pink;
       animation: fall 8s linear infinite;
-      opacity: 0.8;
+      opacity: 0.85;
     }
 
     @keyframes fall {
-      0% {
-        transform: translateY(0) rotate(0deg);
-      }
-      100% {
-        transform: translateY(100vh) rotate(360deg);
-      }
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(360deg); }
+    }
+
+    .secret-btn {
+      background-color: pink;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1em;
+      margin-top: 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .secret-btn:hover {
+      background-color: hotpink;
+    }
+
+    .secret-message {
+      display: none;
+      margin-top: 20px;
+      font-size: 1.8em;
+      color: #ffd1dc;
+      font-weight: bold;
+      animation: fadeIn 1s forwards;
+    }
+
+    .show {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
   </style>
 </head>
@@ -56,25 +84,36 @@
   <div class="overlay">
     <h1>To the Love of My Life</h1>
     <p>
-      I miss you every second we’re apart.<br />
-      You are my heart, my soul, my everything.<br />
-      This page is a small reminder of how much I love you.
+      I miss you every second we're apart.<br />
+      You are my heart, my soul, my everything.<br /><br />
+      You’re not just beautiful — you’re breathtaking.<br />
+      The way you smile, the way you look at me... it drives me wild.<br />
+      You’re the most gorgeous, sexy, intelligent woman I've ever known.<br />
+      I still get butterflies just thinking about you.<br /><br />
+      This page is just a small piece of my love for you —<br />
+      but my feelings for you are endless.
     </p>
+
+    <button class="secret-btn" onclick="revealSecret()">Click to reveal a secret…</button>
+    <div id="secret" class="secret-message">I love you</div>
   </div>
 
-  <!-- Hearts animation -->
   <script>
-    function createHeart() {
-      const heart = document.createElement("div");
-      heart.classList.add("heart");
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.fontSize = (Math.random() * 20 + 20) + "px";
-      heart.innerHTML = "❤️";
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 8000);
+    function createFloatingSymbol() {
+      const symbol = document.createElement("div");
+      symbol.classList.add("floating");
+      symbol.style.left = Math.random() * 100 + "vw";
+      symbol.style.fontSize = (Math.random() * 20 + 20) + "px";
+      symbol.innerHTML = Math.random() > 0.5 ? "❤️" : "💋";
+      document.body.appendChild(symbol);
+      setTimeout(() => symbol.remove(), 8000);
     }
 
-    setInterval(createHeart, 300);
+    setInterval(createFloatingSymbol, 300);
+
+    function revealSecret() {
+      document.getElementById("secret").classList.add("show");
+    }
   </script>
 </body>
 </html>
