@@ -1,28 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>To My Love</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-      background: url('https://images.unsplash.com/photo-1504198453319-5ce911bafcde') no-repeat center center fixed;
-      background-size: cover;
       font-family: 'Georgia', serif;
       color: white;
+      background: url('https://images.unsplash.com/photo-1504198453319-5ce911bafcde?auto=format&fit=crop&w=1500&q=80') no-repeat center center fixed;
+      background-size: cover;
+      overflow: hidden;
       text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      height: 100vh;
     }
 
     .overlay {
       background-color: rgba(0, 0, 0, 0.6);
-      padding: 40px;
+      margin: 100px auto;
+      padding: 30px;
       border-radius: 15px;
-      margin: auto;
       max-width: 600px;
     }
 
@@ -33,7 +30,25 @@
 
     p {
       font-size: 1.5em;
-      line-height: 1.5;
+      line-height: 1.6;
+    }
+
+    .heart {
+      position: fixed;
+      top: -50px;
+      font-size: 24px;
+      color: pink;
+      animation: fall 8s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+      }
     }
   </style>
 </head>
@@ -41,11 +56,25 @@
   <div class="overlay">
     <h1>To the Love of My Life</h1>
     <p>
-      I miss you more than words can express. <br>
-      Every moment without you feels incomplete. <br>
-      I made this page to remind you how much I love you —<br>
-      today, tomorrow, and always.
+      I miss you every second we’re apart.<br />
+      You are my heart, my soul, my everything.<br />
+      This page is a small reminder of how much I love you.
     </p>
   </div>
+
+  <!-- Hearts animation -->
+  <script>
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (Math.random() * 20 + 20) + "px";
+      heart.innerHTML = "❤️";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 8000);
+    }
+
+    setInterval(createHeart, 300);
+  </script>
 </body>
 </html>
